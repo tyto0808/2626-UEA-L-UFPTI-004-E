@@ -1,100 +1,177 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Proyecto de Asignatura - Biodiversidad</title>
-</head>
-<body>
+    <title>Sistema de Biodiversidad</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS PERSONALIZADO -->
     <style>
         body {
-            background-color: #f4f7f6; 
-            font-family: 'Times New Roman', Times, serif, sans-serif; 
-            color: #333333; 
+            background-color: #f4f7f6;
+            font-family: "Times New Roman", serif;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #2c3e50, #3498db);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 30px 10px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 
-    <header>
-        <h1>Sistema de Monitoreo de Biodiversidad y Aracnofauna</h1>
-    </header>
+<body>
 
-    <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#quienes-somos">Quiénes Somos</a></li>
-            <li><a href="#servicios">Servicios o Productos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Biodiversidad</a>
 
-    <main>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <section id="inicio">
-            <h2>Inicio</h2>
-            <p>Bienvenidos a la plataforma oficial para el registro, catalogación y análisis ecológico de ecosistemas. Este sistema provee herramientas avanzadas para investigadores y estudiantes enfocados en las ciencias biológicas y de conservación.</p>
-        </section>
-
-        <section id="quienes-somos">
-            <h2>Quiénes Somos</h2>
-            <article>
-                <p>Somos un equipo académico comprometido con la investigación científica y la preservación ambiental en entornos controlados y estaciones experimentales. Nuestro proyecto nace de la necesidad de documentar de forma rigurosa la biodiversidad local, con un enfoque prioritario en la aracnofauna y su rol fundamental dentro de los ecosistemas. A través del uso de tecnologías de la información, buscamos optimizar la recolección de datos en el campo, facilitando que investigadores y estudiantes colaboren en tiempo real. Esta iniciativa fomenta el desarrollo de proyectos educativos, la generación de informes técnicos de conservación y el análisis profundo de las tendencias de distribución de las especies estudiadas.</p>
-                
-                <img src="Araña.jpeg" alt="Fotos de trabajo de campo" width="500" height=500">
-                <figcaption><i>Fig 1. Observando una Tarantula.</i></figcaption>
-        </figure>
-                <img src="Tarantula.jpeg" alt="Fotos de trabajo de campo" width="500" height=500">
-                <figcaption><i>Fig 2. Registro de avistamiento en campo (Pamphobeteus).</i></figcaption>
-            </article>
-        </section>
-
-        <section id="servicios">
-            <h2>Servicios y Funciones Principales</h2>
-            <ul>
-                <li>Registro detallado de avistamientos de especies y ejemplares en campo.</li>
-                <li>Catalogación sistemática por taxonomía, hábitat específico y nivel de riesgo.</li>
-                <li>Análisis estadístico de tendencias de diversidad y curvas de acumulación.</li>
-                <li>Generación automatizada de informes para proyectos académicos y de conservación.</li>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#quienes">Quiénes Somos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
             </ul>
-        </section>
+        </div>
+    </div>
+</nav>
 
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <p><strong>Correo electrónico:</strong> <a href="mailto:josehtsds6@gmail.com">josehtsds6@gmail.com</a></p>
-            <p><strong>Teléfono:</strong> <a href="tel:+593 098 369 0674">+593 098 369 0674</a></p>
-            <p><strong>Dirección:</strong> Estación Experimental Latitud 0°, Pedernales, Manabí, Ecuador</p>
-            <p><strong>Redes Sociales:</strong> <a href="https://github.com" target="_blank">Nuestro GitHub Institucional</a></p>
-        </section>
+<!-- MAIN -->
+<main>
 
-        <section id="video-proyecto">
-            <h2>Video Informativo del Entorno</h2>
-            <p>Registro audiovisual de las salidas de campo y exploración biológica en la región:</p>
-            
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@ramn2493/video/7630586255469759765" data-video-id="7630586255469759765" style="max-width: 605px;min-width: 325px;" > 
-                <section> 
-                    <a target="_blank" title="@ramn2493" href="https://www.tiktok.com/@ramn2493?refer=embed">@ramn2493</a> 
-                    <a title="bosqueprotectorpatadepajaro" target="_blank" href="https://www.tiktok.com/tag/bosqueprotectorpatadepajaro?refer=embed">#BosqueProtectorPatadePajaro</a> 
-                    @Rayser @Josehp Mendoza  @José Andrés ❤️‍🩹 
-                    <a title="biologiapedernales" target="_blank" href="https://www.tiktok.com/tag/biologiapedernales?refer=embed">#biologiapedernales</a> 
-                    <a target="_blank" title="♬ sonido original - Koji Kobura" href="https://www.tiktok.com/music/sonido-original-7443148057060838161?refer=embed">♬ sonido original - Koji Kobura</a> 
-                </section> 
-            </blockquote> 
-            <script async src="https://www.tiktok.com/embed.js"></script>
-        </section>
+    <!-- INICIO -->
+    <section id="inicio" class="container">
+        <div class="hero">
+            <h1>Sistema de Monitoreo de Biodiversidad</h1>
+            <p>Registro y análisis de la biodiversidad y aracnofauna en ecosistemas naturales</p>
+            <a href="#servicios" class="btn btn-light btn-lg mt-3">Explorar Servicios</a>
+        </div>
+    </section>
 
-    </main>
+    <!-- QUIÉNES SOMOS -->
+    <section id="quienes" class="container my-5">
+        <div class="row align-items-center">
 
-    <aside>
-        <h3>Información Complementaria</h3>
-        <p><strong>Horarios de atención en laboratorio:</strong> Lunes a Viernes de 08:00 a 16:00.</p>
-        <p><strong>Próximo evento:</strong> Simposio Anual de Aracnología y Conservación de Especies 2026.</p>
-    </aside>
+            <div class="col-md-6">
+                <h2>Quiénes Somos</h2>
+                <p>
+                    Somos un equipo académico dedicado a la investigación de biodiversidad y aracnofauna.
+                    Utilizamos herramientas tecnológicas para la recolección y análisis de datos ecológicos.
+                </p>
+            </div>
 
-    <footer>
-        <p>© 2026 - Desarrollado por: Jeremy Joseph Mendoza Bravo</p>
-        <p>Asignatura: Tecnologías de la Información | Institución: UEA</p>
-    </footer>
+            <div class="col-md-6 text-center">
+                <img src="Araña.jpeg" class="img-fluid rounded shadow" alt="Araña en campo">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="container my-5">
+        <h2 class="text-center mb-4">Servicios</h2>
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="card p-3 shadow">
+                    <h5>Registro</h5>
+                    <p>Avistamientos de especies en campo.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-3 shadow">
+                    <h5>Clasificación</h5>
+                    <p>Organización taxonómica de especies.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-3 shadow">
+                    <h5>Análisis</h5>
+                    <p>Estudios de biodiversidad.</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-3 shadow">
+                    <h5>Informes</h5>
+                    <p>Generación automática de reportes.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="container my-5">
+        <h2 class="text-center mb-4">Contacto</h2>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <form class="p-3 shadow bg-white rounded">
+
+                    <input type="text" class="form-control mb-3" placeholder="Nombre">
+
+                    <input type="email" class="form-control mb-3" placeholder="Correo electrónico">
+
+                    <input type="text" class="form-control mb-3" placeholder="Asunto">
+
+                    <textarea class="form-control mb-3" rows="4" placeholder="Mensaje"></textarea>
+
+                    <button class="btn btn-primary w-100">Enviar</button>
+
+                </form>
+            </div>
+
+            <div class="col-md-6 p-3">
+                <p><strong>Email:</strong> <a href="mailto:josehtsds6@gmail.com">Enviar correo</a></p>
+                <p><strong>Teléfono:</strong> <a href="tel:+5930983690674">Llamar</a></p>
+                <p><strong>Ubicación:</strong> Ecuador</p>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 - Proyecto de Biodiversidad</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
-
