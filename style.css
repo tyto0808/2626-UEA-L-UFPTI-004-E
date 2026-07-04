@@ -1,0 +1,57 @@
+body {
+    background-color: #f4f7f6;
+    font-family: "Times New Roman", serif;
+    color: #333333;
+}
+
+.hero {
+    background: linear-gradient(120deg, #1b5e20, #43a047);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    transition: 0.3s;
+}
+
+img {
+    max-height: 350px;
+    object-fit: cover;
+}
+
+#mensajeGeneral {
+    margin-bottom: 15px;
+}
+
+aside {
+    border-left: 6px solid #198754;
+}
+
+footer {
+    background-color: #1b5e20;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 30px 10px !important;
+    }
+
+    .hero h2 {
+        font-size: 26px;
+    }
+
+    img {
+        max-height: 250px;
+    }
+
+    .navbar-brand {
+        font-size: 18px;
+    }
+}

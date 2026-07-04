@@ -1,212 +1,250 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Biodiversidad</title>
+    <title>Mi Proyecto de Asignatura - Biodiversidad</title>
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- CSS PERSONALIZADO -->
-    <style>
-        body {
-            background-color: #f4f7f6;
-            font-family: "Times New Roman", serif;
-        }
-
-        .hero {
-            background: linear-gradient(120deg, #2c3e50, #3498db);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 30px 10px;
-                font-size: 14px;
-            }
-        }
-    </style>
+    
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#">Biodiversidad</a>
+    <header class="bg-success text-white text-center p-3">
+        <h1>Sistema de Monitoreo de Biodiversidad y Aracnofauna</h1>
+    </header>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Biodiversidad</a>
 
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#quienes">Quiénes Somos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-            </ul>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#quienes-somos">Quiénes Somos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#registro">Registro</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#video-proyecto">Video</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<!-- MAIN -->
-<main>
+    <main>
 
-    <!-- INICIO -->
-    <section id="inicio" class="container">
-        <div class="hero">
-            <h1>Sistema de Monitoreo de Biodiversidad</h1>
-            <p>Registro y análisis de la biodiversidad y aracnofauna en ecosistemas naturales</p>
-            <a href="#servicios" class="btn btn-light btn-lg mt-3">Explorar Servicios</a>
-        </div>
-    </section>
-
-    <!-- QUIÉNES SOMOS -->
-    <section id="quienes" class="container my-5">
-        <div class="row align-items-center">
-
-            <div class="col-md-6">
-                <h2>Quiénes Somos</h2>
+        <section id="inicio" class="container my-5">
+            <div class="hero text-center p-5 rounded shadow">
+                <h2>Inicio</h2>
                 <p>
-                    Somos un equipo académico dedicado a la investigación de biodiversidad y aracnofauna.
-                    Utilizamos herramientas tecnológicas para la recolección y análisis de datos ecológicos.
+                    Bienvenidos a la plataforma oficial para el registro, catalogación y análisis ecológico
+                    de ecosistemas. Este sistema provee herramientas para investigadores y estudiantes
+                    enfocados en las ciencias biológicas y de conservación.
                 </p>
+                <a href="#registro" class="btn btn-light btn-lg m-3">Registrar especie</a>
+                <a href="#servicios" class="btn btn-outline-light btn-lg m-3">Ver servicios</a>
             </div>
+        </section>
 
-            <div class="col-md-6 text-center">
-                <img src="Araña.jpeg" class="img-fluid rounded shadow" alt="Araña en campo">
-            </div>
+        <section id="quienes-somos" class="container my-5">
+            <h2 class="text-center mb-4">Quiénes Somos</h2>
 
-        </div>
-    </section>
+            <article class="row align-items-center">
+                <div class="col-md-6">
+                    <p>
+                        Somos un equipo académico comprometido con la investigación científica y la preservación
+                        ambiental en entornos controlados y estaciones experimentales. Nuestro proyecto nace de la
+                        necesidad de documentar de forma rigurosa la biodiversidad local, con un enfoque prioritario
+                        en la aracnofauna y su rol fundamental dentro de los ecosistemas.
+                    </p>
 
-    <!-- SERVICIOS -->
-    <section id="servicios" class="container my-5">
-        <h2 class="text-center mb-4">Servicios</h2>
+                    <p>
+                        A través del uso de tecnologías de la información, buscamos optimizar la recolección de datos
+                        en campo, facilitando que investigadores y estudiantes colaboren en el análisis de especies,
+                        microhábitats y tendencias ecológicas.
+                    </p>
+                </div>
 
-        <div class="row">
+                <div class="col-md-6 text-center">
+                    <figure>
+                        <img src="Araña.jpeg" class="img-fluid rounded shadow m-3" alt="Fotos de trabajo de campo">
+                        <figcaption><i>Fig 1. Observando una tarántula.</i></figcaption>
+                    </figure>
 
-            <div class="col-md-3">
-                <div class="card p-3 shadow">
-                    <h5>Registro</h5>
-                    <p>Avistamientos de especies en campo.</p>
+                    <figure>
+                        <img src="Tarantula.jpeg" class="img-fluid rounded shadow m-3" alt="Fotos de trabajo de campo">
+                        <figcaption><i>Fig 2. Registro de avistamiento en campo.</i></figcaption>
+                    </figure>
+                </div>
+            </article>
+        </section>
+
+        <section id="servicios" class="container my-5">
+            <h2 class="text-center mb-4">Servicios y Funciones Principales</h2>
+
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow p-3 text-center">
+                        <h5>Registro</h5>
+                        <p>Registro detallado de avistamientos de especies y ejemplares en campo.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow p-3 text-center">
+                        <h5>Catalogación</h5>
+                        <p>Clasificación sistemática por taxonomía, hábitat y nivel de riesgo.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow p-3 text-center">
+                        <h5>Análisis</h5>
+                        <p>Análisis estadístico de diversidad, abundancia y curvas de acumulación.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow p-3 text-center">
+                        <h5>Informes</h5>
+                        <p>Generación de informes para proyectos académicos y de conservación.</p>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="col-md-3">
-                <div class="card p-3 shadow">
-                    <h5>Clasificación</h5>
-                    <p>Organización taxonómica de especies.</p>
+        <section id="contacto" class="container my-5">
+            <h2 class="text-center mb-4">Contacto</h2>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="p-3 shadow bg-white rounded">
+                        <input type="text" class="form-control mb-3" placeholder="Nombre">
+                        <input type="email" class="form-control mb-3" placeholder="Correo electrónico">
+                        <input type="text" class="form-control mb-3" placeholder="Asunto">
+                        <textarea class="form-control mb-3" rows="4" placeholder="Mensaje"></textarea>
+                        <button type="submit" class="btn btn-primary w-100">Enviar</button>
+                    </form>
+                </div>
+
+                <div class="col-md-6 p-3">
+                    <p><strong>Correo electrónico:</strong></p>
+                    <a href="mailto:josehtsds6@gmail.com" class="btn btn-outline-primary m-2">Enviar correo</a>
+
+                    <p><strong>Teléfono:</strong></p>
+                    <a href="tel:+5930983690674" class="btn btn-outline-success m-2">Llamar</a>
+
+                    <p><strong>Dirección:</strong></p>
+                    <a href="https://www.google.com/maps" target="_blank" class="btn btn-outline-danger m-2">
+                        Ver ubicación
+                    </a>
+
+                    <p><strong>Redes Sociales:</strong></p>
+                    <a href="https://github.com" target="_blank" class="btn btn-outline-dark m-2">
+                        GitHub Institucional
+                    </a>
+
+                    <p class="mt-3">
+                        Estación Experimental Latitud 0°, Pedernales, Manabí, Ecuador
+                    </p>
                 </div>
             </div>
+        </section>
 
-            <div class="col-md-3">
-                <div class="card p-3 shadow">
-                    <h5>Análisis</h5>
-                    <p>Estudios de biodiversidad.</p>
+        <section class="container my-5" id="registro">
+            <h2 class="text-center mb-4">Registro de Especies</h2>
+
+            <div id="mensajeGeneral"></div>
+
+            <form id="formRegistro" class="shadow p-4 bg-white rounded">
+
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre de la especie</label>
+                    <input type="text" id="nombre" class="form-control" placeholder="Ejemplo: Tarántula">
+                    <div id="errorNombre" class="invalid-feedback"></div>
                 </div>
-            </div>
 
-            <div class="col-md-3">
-                <div class="card p-3 shadow">
-                    <h5>Informes</h5>
-                    <p>Generación automática de reportes.</p>
+                <div class="mb-3">
+                    <label for="categoria" class="form-label">Categoría o tipo</label>
+                    <select id="categoria" class="form-control">
+                        <option value="">Seleccione una categoría</option>
+                        <option value="Arácnido">Arácnido</option>
+                        <option value="Insecto">Insecto</option>
+                        <option value="Reptil">Reptil</option>
+                        <option value="Ave">Ave</option>
+                        <option value="Mamífero">Mamífero</option>
+                    </select>
+                    <div id="errorCategoria" class="invalid-feedback"></div>
                 </div>
+
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea id="descripcion" class="form-control" rows="4" placeholder="Escriba una descripción del registro"></textarea>
+                    <div id="errorDescripcion" class="invalid-feedback"></div>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Agregar Registro
+                </button>
+            </form>
+
+            <div class="mt-4">
+                <h4>Total de registros: <span id="total">0</span></h4>
             </div>
 
-        </div>
-    </section>
+            <div id="listaRegistros" class="row mt-4"></div>
+        </section>
 
-    <!-- CONTACTO -->
-    <section id="contacto" class="container my-5">
-        <h2 class="text-center mb-4">Contacto</h2>
+        <section id="video-proyecto" class="container my-5">
+            <h2 class="text-center mb-4">Video Informativo del Entorno</h2>
+            <p class="text-center">
+                Registro audiovisual de las salidas de campo y exploración biológica en la región:
+            </p>
 
-        <div class="row">
-
-            <div class="col-md-6">
-                <form class="p-3 shadow bg-white rounded">
-
-                    <input type="text" class="form-control mb-3" placeholder="Nombre">
-
-                    <input type="email" class="form-control mb-3" placeholder="Correo electrónico">
-
-                    <input type="text" class="form-control mb-3" placeholder="Asunto">
-
-                    <textarea class="form-control mb-3" rows="4" placeholder="Mensaje"></textarea>
-
-                    <button class="btn btn-primary w-100">Enviar</button>
-
-                </form>
+            <div class="text-center">
+                <blockquote class="tiktok-embed"
+                    cite="https://www.tiktok.com/@ramn2493/video/7630586255469759765"
+                    data-video-id="7630586255469759765"
+                    style="max-width: 605px;min-width: 325px;">
+                    <section>
+                        <a target="_blank" title="@ramn2493" href="https://www.tiktok.com/@ramn2493?refer=embed">@ramn2493</a>
+                        <a title="bosqueprotectorpatadepajaro" target="_blank" href="https://www.tiktok.com/tag/bosqueprotectorpatadepajaro?refer=embed">#BosqueProtectorPatadePajaro</a>
+                        @Rayser @Josehp Mendoza @José Andrés
+                        <a title="biologiapedernales" target="_blank" href="https://www.tiktok.com/tag/biologiapedernales?refer=embed">#biologiapedernales</a>
+                    </section>
+                </blockquote>
             </div>
+        </section>
 
-            <div class="col-md-6 p-3">
-                <p><strong>Email:</strong> <a href="mailto:josehtsds6@gmail.com">Enviar correo</a></p>
-                <p><strong>Teléfono:</strong> <a href="tel:+5930983690674">Llamar</a></p>
-                <p><strong>Ubicación:</strong> Ecuador</p>
-            </div>
+    </main>
 
-        </div>
-    </section>
+    <aside class="container bg-light p-3 rounded shadow my-4">
+        <h3>Información Complementaria</h3>
+        <p><strong>Horarios de atención en laboratorio:</strong> Lunes a Viernes de 08:00 a 16:00.</p>
+        <p><strong>Próximo evento:</strong> Simposio Anual de Aracnología y Conservación de Especies 2026.</p>
+    </aside>
 
-</main>
+    <footer class="text-center p-3">
+        <p>© 2026 - Desarrollado por: Jeremy Joseph Mendoza Bravo</p>
+        <p>Asignatura: Tecnologías de la Información | Institución: UEA</p>
+    </footer>
 
-<section class="container my-5">
-    <h2 class="text-center mb-4">Registro de Especies</h2>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <form id="formRegistro" class="shadow p-4 bg-white rounded">
+    <!-- TikTok Embed -->
+    <script async src="https://www.tiktok.com/embed.js"></script>
 
-        <input type="text"
-               id="nombre"
-               class="form-control mb-3"
-               placeholder="Nombre de la especie">
-
-        <input type="text"
-               id="categoria"
-               class="form-control mb-3"
-               placeholder="Categoría o tipo">
-
-        <textarea id="descripcion"
-                  class="form-control mb-3"
-                  rows="4"
-                  placeholder="Descripción"></textarea>
-
-        <button type="submit" class="btn btn-success">
-            Agregar Registro
-        </button>
-
-    </form>
-
-    <div class="mt-4">
-        <h4>Total de registros: <span id="total">0</span></h4>
-    </div>
-
-    <div id="listaRegistros" class="row mt-4"></div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <p>© 2026 - Proyecto de Biodiversidad</p>
-</footer>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="script.js"></script>
+    <!-- JavaScript personalizado -->
+    <script src="script.js"></script>
 
 </body>
 </html>
