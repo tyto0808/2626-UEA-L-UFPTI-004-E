@@ -1,250 +1,818 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Proyecto de Asignatura - Biodiversidad</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- CSS personalizado -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Mi Proyecto de Asignatura - Biodiversidad
+    </title>
+
+    <!-- Bootstrap CSS mediante CDN -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Archivo CSS personalizado -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- ENCABEZADO -->
     <header class="bg-success text-white text-center p-3">
-        <h1>Sistema de Monitoreo de Biodiversidad y Aracnofauna</h1>
+        <div class="container">
+            <h1 class="mb-2">
+                Sistema de Monitoreo de Biodiversidad y Aracnofauna
+            </h1>
+
+            <p class="mb-0">
+                Registro, catalogación y análisis ecológico de especies
+            </p>
+        </div>
     </header>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Biodiversidad</a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <a class="navbar-brand" href="#inicio">
+                Biodiversidad
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal"
+                aria-expanded="false"
+                aria-label="Abrir menú de navegación"
+            >
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="menu">
+            <div
+                class="collapse navbar-collapse"
+                id="menuPrincipal"
+            >
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#quienes-somos">Quiénes Somos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#registro">Registro</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#video-proyecto">Video</a></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#quienes-somos">
+                            Quiénes Somos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#servicios">
+                            Servicios
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">
+                            Contacto
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#registro">
+                            Registro
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#video-proyecto">
+                            Video
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main>
 
+        <!-- INICIO -->
         <section id="inicio" class="container my-5">
+
             <div class="hero text-center p-5 rounded shadow">
-                <h2>Inicio</h2>
-                <p>
-                    Bienvenidos a la plataforma oficial para el registro, catalogación y análisis ecológico
-                    de ecosistemas. Este sistema provee herramientas para investigadores y estudiantes
-                    enfocados en las ciencias biológicas y de conservación.
+
+                <h2 class="display-5 fw-bold">
+                    Monitoreo de Biodiversidad
+                </h2>
+
+                <p class="lead">
+                    Bienvenidos a la plataforma para el registro,
+                    catalogación y análisis ecológico de ecosistemas.
+                    El sistema proporciona herramientas para estudiantes
+                    e investigadores interesados en las ciencias biológicas,
+                    la conservación y el estudio de la aracnofauna.
                 </p>
-                <a href="#registro" class="btn btn-light btn-lg m-3">Registrar especie</a>
-                <a href="#servicios" class="btn btn-outline-light btn-lg m-3">Ver servicios</a>
+
+                <div class="d-flex justify-content-center flex-wrap gap-3">
+
+                    <a
+                        href="#registro"
+                        class="btn btn-light btn-lg"
+                    >
+                        Registrar especie
+                    </a>
+
+                    <a
+                        href="#servicios"
+                        class="btn btn-outline-light btn-lg"
+                    >
+                        Ver servicios
+                    </a>
+
+                </div>
             </div>
         </section>
 
+        <!-- QUIÉNES SOMOS -->
         <section id="quienes-somos" class="container my-5">
-            <h2 class="text-center mb-4">Quiénes Somos</h2>
+
+            <h2 class="text-center mb-4">
+                Quiénes Somos
+            </h2>
 
             <article class="row align-items-center">
-                <div class="col-md-6">
-                    <p>
-                        Somos un equipo académico comprometido con la investigación científica y la preservación
-                        ambiental en entornos controlados y estaciones experimentales. Nuestro proyecto nace de la
-                        necesidad de documentar de forma rigurosa la biodiversidad local, con un enfoque prioritario
-                        en la aracnofauna y su rol fundamental dentro de los ecosistemas.
-                    </p>
 
-                    <p>
-                        A través del uso de tecnologías de la información, buscamos optimizar la recolección de datos
-                        en campo, facilitando que investigadores y estudiantes colaboren en el análisis de especies,
-                        microhábitats y tendencias ecológicas.
-                    </p>
+                <div class="col-12 col-lg-6 mb-4">
+
+                    <div class="p-3">
+
+                        <p>
+                            Somos un equipo académico comprometido con la
+                            investigación científica y la preservación ambiental
+                            en entornos naturales y estaciones experimentales.
+                        </p>
+
+                        <p>
+                            Nuestro proyecto nace de la necesidad de documentar
+                            de forma rigurosa la biodiversidad local, con un
+                            enfoque prioritario en la aracnofauna y su función
+                            dentro de los ecosistemas.
+                        </p>
+
+                        <p>
+                            A través de las tecnologías de la información,
+                            buscamos optimizar la recolección de datos en campo,
+                            facilitar el análisis de especies y promover el
+                            desarrollo de proyectos académicos y de conservación.
+                        </p>
+
+                    </div>
                 </div>
 
-                <div class="col-md-6 text-center">
-                    <figure>
-                        <img src="Araña.jpeg" class="img-fluid rounded shadow m-3" alt="Fotos de trabajo de campo">
-                        <figcaption><i>Fig 1. Observando una tarántula.</i></figcaption>
-                    </figure>
+                <div class="col-12 col-lg-6">
 
-                    <figure>
-                        <img src="Tarantula.jpeg" class="img-fluid rounded shadow m-3" alt="Fotos de trabajo de campo">
-                        <figcaption><i>Fig 2. Registro de avistamiento en campo.</i></figcaption>
-                    </figure>
+                    <div class="row">
+
+                        <div class="col-12 col-md-6 mb-4">
+                            <figure class="text-center h-100">
+
+                                <img
+                                    src="Araña.jpeg"
+                                    class="img-fluid rounded shadow imagen-campo"
+                                    alt="Observación de una araña durante el trabajo de campo"
+                                >
+
+                                <figcaption class="mt-2">
+                                    <em>
+                                        Fig. 1. Observación de una tarántula.
+                                    </em>
+                                </figcaption>
+
+                            </figure>
+                        </div>
+
+                        <div class="col-12 col-md-6 mb-4">
+                            <figure class="text-center h-100">
+
+                                <img
+                                    src="Tarantula.jpeg"
+                                    class="img-fluid rounded shadow imagen-campo"
+                                    alt="Registro de una tarántula durante el trabajo de campo"
+                                >
+
+                                <figcaption class="mt-2">
+                                    <em>
+                                        Fig. 2. Registro de avistamiento en campo.
+                                    </em>
+                                </figcaption>
+
+                            </figure>
+                        </div>
+
+                    </div>
                 </div>
+
             </article>
         </section>
 
+        <!-- SERVICIOS -->
         <section id="servicios" class="container my-5">
-            <h2 class="text-center mb-4">Servicios y Funciones Principales</h2>
 
-            <div class="row">
-                <div class="col-md-3 mb-3">
+            <h2 class="text-center mb-4">
+                Servicios y Funciones Principales
+            </h2>
+
+            <div class="row g-4">
+
+                <div class="col-12 col-md-6 col-lg-3">
                     <div class="card h-100 shadow p-3 text-center">
-                        <h5>Registro</h5>
-                        <p>Registro detallado de avistamientos de especies y ejemplares en campo.</p>
+
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Registro
+                            </h5>
+
+                            <p class="card-text">
+                                Registro detallado de avistamientos de
+                                especies y ejemplares encontrados en campo.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-12 col-md-6 col-lg-3">
                     <div class="card h-100 shadow p-3 text-center">
-                        <h5>Catalogación</h5>
-                        <p>Clasificación sistemática por taxonomía, hábitat y nivel de riesgo.</p>
+
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Catalogación
+                            </h5>
+
+                            <p class="card-text">
+                                Clasificación sistemática según taxonomía,
+                                hábitat, categoría y características ecológicas.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-12 col-md-6 col-lg-3">
                     <div class="card h-100 shadow p-3 text-center">
-                        <h5>Análisis</h5>
-                        <p>Análisis estadístico de diversidad, abundancia y curvas de acumulación.</p>
+
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Análisis
+                            </h5>
+
+                            <p class="card-text">
+                                Análisis de diversidad, abundancia,
+                                distribución y tendencias ecológicas.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-12 col-md-6 col-lg-3">
                     <div class="card h-100 shadow p-3 text-center">
-                        <h5>Informes</h5>
-                        <p>Generación de informes para proyectos académicos y de conservación.</p>
+
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Informes
+                            </h5>
+
+                            <p class="card-text">
+                                Elaboración de informes para proyectos
+                                académicos, científicos y de conservación.
+                            </p>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
         </section>
 
+        <!-- CONTACTO -->
         <section id="contacto" class="container my-5">
-            <h2 class="text-center mb-4">Contacto</h2>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <form class="p-3 shadow bg-white rounded">
-                        <input type="text" class="form-control mb-3" placeholder="Nombre">
-                        <input type="email" class="form-control mb-3" placeholder="Correo electrónico">
-                        <input type="text" class="form-control mb-3" placeholder="Asunto">
-                        <textarea class="form-control mb-3" rows="4" placeholder="Mensaje"></textarea>
-                        <button type="submit" class="btn btn-primary w-100">Enviar</button>
+            <h2 class="text-center mb-4">
+                Contacto
+            </h2>
+
+            <div class="row g-4">
+
+                <div class="col-12 col-lg-6">
+
+                    <form
+                        id="formContacto"
+                        class="p-4 shadow bg-white rounded"
+                    >
+
+                        <div class="mb-3">
+                            <label
+                                for="nombreContacto"
+                                class="form-label"
+                            >
+                                Nombre
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombreContacto"
+                                class="form-control"
+                                placeholder="Ingrese su nombre"
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label
+                                for="correoContacto"
+                                class="form-label"
+                            >
+                                Correo electrónico
+                            </label>
+
+                            <input
+                                type="email"
+                                id="correoContacto"
+                                class="form-control"
+                                placeholder="ejemplo@correo.com"
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label
+                                for="asuntoContacto"
+                                class="form-label"
+                            >
+                                Asunto
+                            </label>
+
+                            <input
+                                type="text"
+                                id="asuntoContacto"
+                                class="form-control"
+                                placeholder="Escriba el asunto"
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label
+                                for="mensajeContacto"
+                                class="form-label"
+                            >
+                                Mensaje
+                            </label>
+
+                            <textarea
+                                id="mensajeContacto"
+                                class="form-control"
+                                rows="4"
+                                placeholder="Escriba su mensaje"
+                            ></textarea>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary w-100"
+                        >
+                            Enviar mensaje
+                        </button>
+
                     </form>
                 </div>
 
-                <div class="col-md-6 p-3">
-                    <p><strong>Correo electrónico:</strong></p>
-                    <a href="mailto:josehtsds6@gmail.com" class="btn btn-outline-primary m-2">Enviar correo</a>
+                <div class="col-12 col-lg-6">
 
-                    <p><strong>Teléfono:</strong></p>
-                    <a href="tel:+5930983690674" class="btn btn-outline-success m-2">Llamar</a>
+                    <div class="p-4 shadow bg-white rounded h-100">
 
-                    <p><strong>Dirección:</strong></p>
-                    <a href="https://www.google.com/maps" target="_blank" class="btn btn-outline-danger m-2">
-                        Ver ubicación
-                    </a>
+                        <h3 class="h4 mb-4">
+                            Información de contacto
+                        </h3>
 
-                    <p><strong>Redes Sociales:</strong></p>
-                    <a href="https://github.com" target="_blank" class="btn btn-outline-dark m-2">
-                        GitHub Institucional
-                    </a>
+                        <p>
+                            <strong>Correo electrónico:</strong>
+                        </p>
 
-                    <p class="mt-3">
-                        Estación Experimental Latitud 0°, Pedernales, Manabí, Ecuador
-                    </p>
+                        <a
+                            href="mailto:josehtsds6@gmail.com"
+                            class="btn btn-outline-primary m-2"
+                        >
+                            Enviar correo
+                        </a>
+
+                        <p class="mt-3">
+                            <strong>Teléfono:</strong>
+                        </p>
+
+                        <a
+                            href="tel:+5930983690674"
+                            class="btn btn-outline-success m-2"
+                        >
+                            Llamar
+                        </a>
+
+                        <p class="mt-3">
+                            <strong>Ubicación:</strong>
+                        </p>
+
+                        <a
+                            href="https://www.google.com/maps"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-outline-danger m-2"
+                        >
+                            Ver ubicación
+                        </a>
+
+                        <p class="mt-3">
+                            <strong>Red social:</strong>
+                        </p>
+
+                        <a
+                            href="https://github.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-outline-dark m-2"
+                        >
+                            GitHub
+                        </a>
+
+                        <p class="mt-4">
+                            Estación Experimental Latitud 0°,
+                            Pedernales, Manabí, Ecuador.
+                        </p>
+
+                    </div>
                 </div>
+
             </div>
         </section>
 
-        <section class="container my-5" id="registro">
-            <h2 class="text-center mb-4">Registro de Especies</h2>
+        <!-- REGISTRO DINÁMICO -->
+        <section id="registro" class="container my-5">
 
+            <h2 class="text-center mb-4">
+                Registro de Especies
+            </h2>
+
+            <!-- Aquí aparecerán las alertas -->
             <div id="mensajeGeneral"></div>
 
-            <form id="formRegistro" class="shadow p-4 bg-white rounded">
+            <form
+                id="formRegistro"
+                class="shadow p-4 bg-white rounded"
+                novalidate
+            >
 
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre de la especie</label>
-                    <input type="text" id="nombre" class="form-control" placeholder="Ejemplo: Tarántula">
-                    <div id="errorNombre" class="invalid-feedback"></div>
+                <div class="row">
+
+                    <div class="col-12 col-md-6 mb-3">
+
+                        <label
+                            for="nombre"
+                            class="form-label"
+                        >
+                            Nombre de la especie
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombre"
+                            class="form-control"
+                            placeholder="Ejemplo: Tarántula"
+                        >
+
+                        <div
+                            id="errorNombre"
+                            class="invalid-feedback"
+                        ></div>
+
+                    </div>
+
+                    <div class="col-12 col-md-6 mb-3">
+
+                        <label
+                            for="categoria"
+                            class="form-label"
+                        >
+                            Categoría o tipo
+                        </label>
+
+                        <select
+                            id="categoria"
+                            class="form-select"
+                        >
+                            <option value="">
+                                Seleccione una categoría
+                            </option>
+
+                            <option value="Arácnido">
+                                Arácnido
+                            </option>
+
+                            <option value="Insecto">
+                                Insecto
+                            </option>
+
+                            <option value="Reptil">
+                                Reptil
+                            </option>
+
+                            <option value="Ave">
+                                Ave
+                            </option>
+
+                            <option value="Mamífero">
+                                Mamífero
+                            </option>
+                        </select>
+
+                        <div
+                            id="errorCategoria"
+                            class="invalid-feedback"
+                        ></div>
+
+                    </div>
+
+                    <div class="col-12 mb-3">
+
+                        <label
+                            for="descripcion"
+                            class="form-label"
+                        >
+                            Descripción
+                        </label>
+
+                        <textarea
+                            id="descripcion"
+                            class="form-control"
+                            rows="4"
+                            placeholder="Escriba una descripción de al menos 10 caracteres"
+                        ></textarea>
+
+                        <div
+                            id="errorDescripcion"
+                            class="invalid-feedback"
+                        ></div>
+
+                    </div>
+
                 </div>
 
-                <div class="mb-3">
-                    <label for="categoria" class="form-label">Categoría o tipo</label>
-                    <select id="categoria" class="form-control">
-                        <option value="">Seleccione una categoría</option>
-                        <option value="Arácnido">Arácnido</option>
-                        <option value="Insecto">Insecto</option>
-                        <option value="Reptil">Reptil</option>
-                        <option value="Ave">Ave</option>
-                        <option value="Mamífero">Mamífero</option>
-                    </select>
-                    <div id="errorCategoria" class="invalid-feedback"></div>
-                </div>
+                <!-- BOTÓN CON SPINNER -->
+                <button
+                    type="submit"
+                    id="btnAgregar"
+                    class="btn btn-success"
+                >
+                    <span id="textoBoton">
+                        Agregar Registro
+                    </span>
 
-                <div class="mb-3">
-                    <label for="descripcion" class="form-label">Descripción</label>
-                    <textarea id="descripcion" class="form-control" rows="4" placeholder="Escriba una descripción del registro"></textarea>
-                    <div id="errorDescripcion" class="invalid-feedback"></div>
-                </div>
-
-                <button type="submit" class="btn btn-success">
-                    Agregar Registro
+                    <span
+                        id="spinnerRegistro"
+                        class="spinner-border spinner-border-sm d-none"
+                        role="status"
+                        aria-hidden="true"
+                    ></span>
                 </button>
+
             </form>
 
-            <div class="mt-4">
-                <h4>Total de registros: <span id="total">0</span></h4>
+            <!-- CONTADOR -->
+            <div class="mt-4 p-3 bg-light rounded shadow-sm">
+
+                <h4 class="mb-0">
+                    Total de registros:
+                    <span
+                        id="total"
+                        class="badge bg-success"
+                    >
+                        0
+                    </span>
+                </h4>
+
             </div>
 
-            <div id="listaRegistros" class="row mt-4"></div>
+            <!-- CARDS CREADAS CON JAVASCRIPT -->
+            <div
+                id="listaRegistros"
+                class="row mt-4"
+            ></div>
+
         </section>
 
-        <section id="video-proyecto" class="container my-5">
-            <h2 class="text-center mb-4">Video Informativo del Entorno</h2>
+        <!-- MODAL DE DETALLES -->
+        <div
+            class="modal fade"
+            id="modalDetalles"
+            tabindex="-1"
+            aria-labelledby="modalDetallesTitulo"
+            aria-hidden="true"
+        >
+
+            <div class="modal-dialog modal-dialog-centered">
+
+                <div class="modal-content">
+
+                    <div class="modal-header bg-success text-white">
+
+                        <h5
+                            class="modal-title"
+                            id="modalDetallesTitulo"
+                        >
+                            Detalles del registro
+                        </h5>
+
+                        <button
+                            type="button"
+                            class="btn-close btn-close-white"
+                            data-bs-dismiss="modal"
+                            aria-label="Cerrar"
+                        ></button>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <p>
+                            <strong>
+                                Nombre de la especie:
+                            </strong>
+
+                            <span id="modalNombre"></span>
+                        </p>
+
+                        <p>
+                            <strong>
+                                Categoría:
+                            </strong>
+
+                            <span id="modalCategoria"></span>
+                        </p>
+
+                        <p>
+                            <strong>
+                                Descripción:
+                            </strong>
+                        </p>
+
+                        <p id="modalDescripcion"></p>
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            Cerrar
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- VIDEO -->
+        <section
+            id="video-proyecto"
+            class="container my-5"
+        >
+
+            <h2 class="text-center mb-4">
+                Video Informativo del Entorno
+            </h2>
+
             <p class="text-center">
-                Registro audiovisual de las salidas de campo y exploración biológica en la región:
+                Registro audiovisual de las salidas de campo
+                y exploración biológica en la región.
             </p>
 
-            <div class="text-center">
-                <blockquote class="tiktok-embed"
+            <div class="d-flex justify-content-center">
+
+                <blockquote
+                    class="tiktok-embed"
                     cite="https://www.tiktok.com/@ramn2493/video/7630586255469759765"
                     data-video-id="7630586255469759765"
-                    style="max-width: 605px;min-width: 325px;">
+                    style="max-width: 605px; min-width: 325px;"
+                >
+
                     <section>
-                        <a target="_blank" title="@ramn2493" href="https://www.tiktok.com/@ramn2493?refer=embed">@ramn2493</a>
-                        <a title="bosqueprotectorpatadepajaro" target="_blank" href="https://www.tiktok.com/tag/bosqueprotectorpatadepajaro?refer=embed">#BosqueProtectorPatadePajaro</a>
+
+                        <a
+                            target="_blank"
+                            title="@ramn2493"
+                            href="https://www.tiktok.com/@ramn2493?refer=embed"
+                        >
+                            @ramn2493
+                        </a>
+
+                        <a
+                            target="_blank"
+                            title="bosqueprotectorpatadepajaro"
+                            href="https://www.tiktok.com/tag/bosqueprotectorpatadepajaro?refer=embed"
+                        >
+                            #BosqueProtectorPatadePajaro
+                        </a>
+
                         @Rayser @Josehp Mendoza @José Andrés
-                        <a title="biologiapedernales" target="_blank" href="https://www.tiktok.com/tag/biologiapedernales?refer=embed">#biologiapedernales</a>
+
+                        <a
+                            target="_blank"
+                            title="biologiapedernales"
+                            href="https://www.tiktok.com/tag/biologiapedernales?refer=embed"
+                        >
+                            #biologiapedernales
+                        </a>
+
                     </section>
+
                 </blockquote>
+
             </div>
         </section>
 
     </main>
 
+    <!-- INFORMACIÓN COMPLEMENTARIA -->
     <aside class="container bg-light p-3 rounded shadow my-4">
-        <h3>Información Complementaria</h3>
-        <p><strong>Horarios de atención en laboratorio:</strong> Lunes a Viernes de 08:00 a 16:00.</p>
-        <p><strong>Próximo evento:</strong> Simposio Anual de Aracnología y Conservación de Especies 2026.</p>
+
+        <h3>
+            Información Complementaria
+        </h3>
+
+        <p>
+            <strong>
+                Horarios de atención en laboratorio:
+            </strong>
+
+            Lunes a viernes de 08:00 a 16:00.
+        </p>
+
+        <p>
+            <strong>
+                Próximo evento:
+            </strong>
+
+            Simposio Anual de Aracnología y
+            Conservación de Especies 2026.
+        </p>
+
     </aside>
 
-    <footer class="text-center p-3">
-        <p>© 2026 - Desarrollado por: Jeremy Joseph Mendoza Bravo</p>
-        <p>Asignatura: Tecnologías de la Información | Institución: UEA</p>
+    <!-- PIE DE PÁGINA -->
+    <footer class="text-center p-4">
+
+        <div class="container">
+
+            <p class="mb-1">
+                © 2026 - Desarrollado por:
+                Jeremy Joseph Mendoza Bravo
+            </p>
+
+            <p class="mb-0">
+                Asignatura: Tecnologías de la Información |
+                Institución: UEA
+            </p>
+
+        </div>
+
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
 
-    <!-- TikTok Embed -->
-    <script async src="https://www.tiktok.com/embed.js"></script>
+    <!-- TikTok -->
+    <script
+        async
+        src="https://www.tiktok.com/embed.js"
+    ></script>
 
     <!-- JavaScript personalizado -->
     <script src="script.js"></script>
 
 </body>
+
 </html>

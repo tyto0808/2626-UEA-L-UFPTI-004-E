@@ -55,3 +55,46 @@ footer {
         font-size: 18px;
     }
 }
+#spinnerRegistro {
+    margin-left: 8px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-body {
+    min-height: 230px;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+}
+
+#modalDescripcion {
+    text-align: justify;
+}
+
+@media (max-width: 576px) {
+    #btnAgregar {
+        width: 100%;
+    }
+
+    .card-body {
+        min-height: auto;
+    }
+
+    .card .btn {
+        width: 100%;
+    }
+}
