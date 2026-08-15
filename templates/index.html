@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="p-5 mb-4 bg-light rounded-3 shadow-sm text-center">
+    <h2 class="fw-bold">Monitoreo de Biodiversidad</h2>
+    <p class="fs-5 text-muted">Bienvenidos a la plataforma para el registro, catalogación y análisis ecológico de ecosistemas.</p>
+    <a href="#registro-seccion" class="btn btn-success btn-lg">Registrar especie</a>
+</div>
+
+<section class="mb-5">
+    <h3>Quiénes Somos</h3>
+    <p>Somos un equipo académico comprometido con la investigación científica y la preservación ambiental...</p>
+    
+    <!-- COPIA ESTAS LÍNEAS EXACTAMENTE -->
+    <img src="{{ url_for('static', filename='img/Araña.jpeg') }}" alt="Foto de Araña" width="300">
+    <img src="{{ url_for('static', filename='img/Tarantula.jpeg') }}" alt="Foto de Tarántula" width="300">
+
+</section>
+
+<!-- ... resto de tu código ... -->
+
+{% endblock %}
