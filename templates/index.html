@@ -2,22 +2,115 @@
 
 {% block content %}
 
-<div class="p-5 mb-4 bg-light rounded-3 shadow-sm text-center">
-    <h2 class="fw-bold">Monitoreo de Biodiversidad</h2>
-    <p class="fs-5 text-muted">Bienvenidos a la plataforma para el registro, catalogación y análisis ecológico de ecosistemas.</p>
-    <a href="#registro-seccion" class="btn btn-success btn-lg">Registrar especie</a>
+<div class="container">
+
+    <div class="text-center mb-5">
+
+        <h2 class="display-5">
+            Monitoreo de Biodiversidad
+        </h2>
+
+        <p class="lead">
+            Plataforma para el registro, catalogación y análisis
+            de la aracnofauna.
+        </p>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card h-100 shadow">
+
+                <div class="card-body text-center">
+
+                    <h3 class="card-title">
+                        🕷️ Registro de Aracnofauna
+                    </h3>
+
+                    <p class="card-text">
+                        Registra las familias, géneros y especies
+                        encontradas durante los monitoreos.
+                    </p>
+
+                    <a href="{{ url_for('especies') }}"
+                       class="btn btn-success">
+
+                        Registrar especie
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card h-100 shadow">
+
+                <div class="card-body text-center">
+
+                    <h3 class="card-title">
+                        📊 Monitoreo
+                    </h3>
+
+                    <p class="card-text">
+                        Organiza la información obtenida en los
+                        diferentes microhábitats y temporadas.
+                    </p>
+
+                    <a href="{{ url_for('especies') }}"
+                       class="btn btn-primary">
+
+                        Ver registros
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card mt-4 shadow">
+
+        <div class="card-body">
+
+            <h3>Área de estudio</h3>
+
+            <p>
+                Estación Experimental Latitud Cero,
+                Universidad Laica Eloy Alfaro de Manabí (ULEAM),
+                Pedernales, Ecuador.
+            </p>
+
+            <h5>Microhábitats evaluados</h5>
+
+            <ul>
+                <li>🌿 Arbustos</li>
+                <li>🍂 Hojarasca</li>
+                <li>🌱 Suelo</li>
+                <li>🪵 Troncos</li>
+            </ul>
+
+            <h5>Temporadas</h5>
+
+            <ul>
+                <li>Invierno</li>
+                <li>Verano</li>
+            </ul>
+
+        </div>
+
+    </div>
+
 </div>
-
-<section class="mb-5">
-    <h3>Quiénes Somos</h3>
-    <p>Somos un equipo académico comprometido con la investigación científica y la preservación ambiental...</p>
-    
-    <!-- COPIA ESTAS LÍNEAS EXACTAMENTE -->
-    <img src="{{ url_for('static', filename='img/Araña.jpeg') }}" alt="Foto de Araña" width="300">
-    <img src="{{ url_for('static', filename='img/Tarantula.jpeg') }}" alt="Foto de Tarántula" width="300">
-
-</section>
-
-<!-- ... resto de tu código ... -->
 
 {% endblock %}

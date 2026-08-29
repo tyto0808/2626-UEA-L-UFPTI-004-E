@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container my-4">
+
+    <h2 class="mb-3">Registro de Especies</h2>
+
+    <p>Registra las especies encontradas durante los monitoreos de biodiversidad y aracnofauna.</p>
+
+    <form method="POST" action="{{ url_for('especies') }}">
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Nombre común</label>
+                <input type="text" name="nombre_comun" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Familia</label>
+                <input type="text" name="familia" class="form-control" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Género</label>
+                <input type="text" name="genero" class="form-control">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Microhábitat</label>
+                <select name="microhabitat" class="form-select" required>
+                    <option value="">Seleccione...</option>
+                    <option value="Arbustos">Arbustos</option>
+                    <option value="Hojarasca">Hojarasca</option>
+                    <option value="Suelo">Suelo</option>
+                    <option value="Troncos">Troncos</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Temporada</label>
+                <select name="temporada" class="form-select" required>
+                    <option value="">Seleccione...</option>
+                    <option value="Invierno">Invierno</option>
+                    <option value="Verano">Verano</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Cantidad</label>
+                <input type="number" name="cantidad" class="form-control" min="1" required>
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Registrar especie
+        </button>
+
+    </form>
+
+    <hr class="my-4">
+
+    <h3>Especies registradas</h3>
+
+    {% if especies %}
+
+    <div class="table-responsive">
+
+        <table class="table table-striped table-bordered">
+
+            <thead class="table-dark">
+
+                <tr>
+                    <th>Nombre común</th>
+                    <th>Familia</th>
+                    <th>Género</th>
+                    <th>Microhábitat</th>
+                    <th>Temporada</th>
+                    <th>Cantidad</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for especie in especies %}
+
+                <tr>
+                    <td>{{ especie.nombre_comun }}</td>
+                    <td>{{ especie.familia }}</td>
+                    <td>{{ especie.genero }}</td>
+                    <td>{{ especie.microhabitat }}</td>
+                    <td>{{ especie.temporada }}</td>
+                    <td>{{ especie.cantidad }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-warning">
+        Todavía no hay especies registradas.
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
