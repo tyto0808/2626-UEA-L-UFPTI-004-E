@@ -1,3 +1,6 @@
+import os
+import sqlite3
+
 from flask import Flask, render_template, redirect, url_for
 
 from forms.especie_form import EspecieForm
@@ -7,18 +10,74 @@ from forms.proveedor_form import ProveedorForm
 from forms.facturacion_form import FacturacionForm
 
 
+# ============================================================
+# CONFIGURACIÓN DE LA BASE DE DATOS SQLITE
+# ============================================================
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+DATABASE = os.path.join(
+    BASE_DIR,
+    'data',
+    'ferreteria.db'
+)
+
+
+def get_db_connection():
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
+def crear_base_datos():
+
+    # Crear carpeta data si no existe
+    os.makedirs(
+        os.path.join(BASE_DIR, 'data'),
+        exist_ok=True
+    )
+
+    conn = get_db_connection()
+
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS productos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombre TEXT NOT NULL,
+            categoria TEXT NOT NULL,
+            precio REAL NOT NULL,
+            cantidad INTEGER NOT NULL
+        )
+    ''')
+
+    conn.commit()
+    conn.close()
+
+
+# ============================================================
+# CONFIGURACIÓN DE FLASK
+# ============================================================
+
 app = Flask(__name__)
 
-# SECRET_KEY necesaria para Flask-WTF y protección CSRF
 app.config['SECRET_KEY'] = 'clave-secreta-semana-11'
+
+
+# ============================================================
+# CREAR BASE DE DATOS
+# ============================================================
+
+crear_base_datos()
+
+# Esto nos permite comprobar dónde está la base de datos
+print("Base de datos utilizada:", DATABASE)
 
 
 # ============================================================
 # ALMACENAMIENTO TEMPORAL
 # ============================================================
+# Productos NO está aquí porque utiliza SQLite.
 
 especies_registradas = []
-productos_registrados = []
 clientes_registrados = []
 proveedores_registrados = []
 facturas_registradas = []
@@ -67,7 +126,7 @@ def especies():
 
 
 # ============================================================
-# PRODUCTOS
+# PRODUCTOS - SQLITE
 # ============================================================
 
 @app.route('/productos', methods=['GET', 'POST'])
@@ -75,23 +134,57 @@ def productos():
 
     form = ProductoForm()
 
+    # --------------------------------------------------------
+    # INSERT - GUARDAR EN SQLITE
+    # --------------------------------------------------------
+
     if form.validate_on_submit():
 
-        nuevo_producto = {
-            'nombre': form.nombre.data,
-            'categoria': form.categoria.data,
-            'precio': form.precio.data,
-            'cantidad': form.cantidad.data
-        }
+        conn = get_db_connection()
 
-        productos_registrados.append(nuevo_producto)
+        conn.execute(
+            '''
+            INSERT INTO productos
+            (nombre, categoria, precio, cantidad)
+            VALUES (?, ?, ?, ?)
+            ''',
+            (
+                form.nombre.data,
+                form.categoria.data,
+                float(form.precio.data),
+                form.cantidad.data
+            )
+        )
+
+        conn.commit()
+        conn.close()
 
         return redirect(url_for('productos'))
+
+    # --------------------------------------------------------
+    # SELECT - RECUPERAR DATOS DE SQLITE
+    # --------------------------------------------------------
+
+    conn = get_db_connection()
+
+    productos_db = conn.execute(
+        '''
+        SELECT id, nombre, categoria, precio, cantidad
+        FROM productos
+        ORDER BY id DESC
+        '''
+    ).fetchall()
+
+    conn.close()
+
+    # --------------------------------------------------------
+    # ENVIAR REGISTROS A JINJA2
+    # --------------------------------------------------------
 
     return render_template(
         'productos.html',
         form=form,
-        productos=productos_registrados
+        productos=productos_db
     )
 
 
