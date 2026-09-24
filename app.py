@@ -1,23 +1,14 @@
 import os
 import sqlite3
 import mysql.connector
+import psycopg2
 
+from psycopg2.extras import RealDictCursor
 from dotenv import load_dotenv
 
-load_dotenv()
+from flask import Flask, render_template, redirect, url_for, request
 
-from flask import (
-    Flask,
-    render_template,
-    redirect,
-    url_for,
-    request
-)
-
-from werkzeug.security import (
-    generate_password_hash,
-    check_password_hash
-)
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from flask_login import (
     LoginManager,
@@ -42,13 +33,31 @@ from forms.registro_form import RegistroForm
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+# Cargar .env desde la carpeta del proyecto
+ENV_FILE = os.path.join(BASE_DIR, ".env")
+
+load_dotenv(ENV_FILE, override=True)
+
 
 # ============================================================
-# PRUEBA PARA SABER QUÉ APP.PY SE ESTÁ EJECUTANDO
+# PRUEBA DE VARIABLES DEL .ENV
 # ============================================================
+
+print("====================================")
+print("PRUEBA DE VARIABLES POSTGRESQL")
+print("POSTGRES_HOST:", os.getenv("POSTGRES_HOST"))
+print("POSTGRES_DATABASE:", os.getenv("POSTGRES_DATABASE"))
+print("POSTGRES_USER:", os.getenv("POSTGRES_USER"))
+print("POSTGRES_PASSWORD:", os.getenv("POSTGRES_PASSWORD"))
+print("POSTGRES_PORT:", os.getenv("POSTGRES_PORT"))
+print("====================================")
+
 
 print("******** PRUEBA APP.PY ********")
-print("ESTOY EJECUTANDO ESTE ARCHIVO:", os.path.abspath(__file__))
+print(
+    "ESTOY EJECUTANDO ESTE ARCHIVO:",
+    os.path.abspath(__file__)
+)
 print("*******************************")
 
 print("====================================")
@@ -103,7 +112,10 @@ def get_db_connection():
 def crear_base_datos():
 
     os.makedirs(
-        os.path.join(BASE_DIR, "data"),
+        os.path.join(
+            BASE_DIR,
+            "data"
+        ),
         exist_ok=True
     )
 
@@ -133,7 +145,7 @@ print(
 
 
 # ============================================================
-# MYSQL - USUARIOS
+# MYSQL - CONEXIÓN
 # ============================================================
 
 MYSQL_CONFIG = {
@@ -141,7 +153,12 @@ MYSQL_CONFIG = {
     "user": os.getenv("MYSQL_USER"),
     "password": os.getenv("MYSQL_PASSWORD"),
     "database": os.getenv("MYSQL_DATABASE"),
-    "port": int(os.getenv("MYSQL_PORT", 3306))
+    "port": int(
+        os.getenv(
+            "MYSQL_PORT",
+            3306
+        )
+    )
 }
 
 
@@ -157,7 +174,36 @@ def get_mysql_connection():
 
 
 # ============================================================
-# CREAR APLICACIÓN FLASK
+# POSTGRESQL - CONEXIÓN
+# ============================================================
+
+POSTGRES_CONFIG = {
+    "host": os.getenv("POSTGRES_HOST"),
+    "database": os.getenv("POSTGRES_DATABASE"),
+    "user": os.getenv("POSTGRES_USER"),
+    "password": os.getenv("POSTGRES_PASSWORD"),
+    "port": int(
+        os.getenv(
+            "POSTGRES_PORT",
+            5432
+        )
+    )
+}
+
+
+def get_postgres_connection():
+
+    return psycopg2.connect(
+        host=POSTGRES_CONFIG["host"],
+        database=POSTGRES_CONFIG["database"],
+        user=POSTGRES_CONFIG["user"],
+        password=POSTGRES_CONFIG["password"],
+        port=POSTGRES_CONFIG["port"]
+    )
+
+
+# ============================================================
+# FLASK
 # ============================================================
 
 app = Flask(
@@ -171,12 +217,11 @@ app.config["SECRET_KEY"] = os.getenv(
 )
 
 
-# Crear base SQLite
 crear_base_datos()
 
 
 # ============================================================
-# FLASK-LOGIN
+# FLASK LOGIN
 # ============================================================
 
 login_manager = LoginManager()
@@ -185,10 +230,6 @@ login_manager.init_app(app)
 
 login_manager.login_view = "acceso_restringido"
 
-
-# ============================================================
-# CLASE USUARIO
-# ============================================================
 
 class Usuario(UserMixin):
 
@@ -205,64 +246,110 @@ class Usuario(UserMixin):
 
 
 # ============================================================
-# CARGAR USUARIO
+# CARGAR USUARIO DESDE POSTGRESQL
 # ============================================================
 
 @login_manager.user_loader
 def load_user(user_id):
 
-    conn = get_mysql_connection()
+    conn = None
+    cursor = None
 
-    cursor = conn.cursor(dictionary=True)
+    try:
 
-    cursor.execute(
-        """
-        SELECT id, usuario, password
-        FROM usuarios
-        WHERE id = %s
-        """,
-        (user_id,)
-    )
+        conn = get_postgres_connection()
 
-    usuario = cursor.fetchone()
+        cursor = conn.cursor()
 
-    cursor.close()
+        cursor.execute(
+            """
+            SELECT
+                id,
+                usuario,
+                password
 
-    conn.close()
+            FROM usuarios
 
-    if usuario:
-
-        return Usuario(
-            usuario["id"],
-            usuario["usuario"],
-            usuario["password"]
+            WHERE id = %s
+            """,
+            (user_id,)
         )
+
+        usuario = cursor.fetchone()
+
+        if usuario:
+
+            return Usuario(
+                usuario[0],
+                usuario[1],
+                usuario[2]
+            )
+
+    except psycopg2.Error as e:
+
+        print(
+            "ERROR AL CARGAR USUARIO:",
+            e
+        )
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if conn:
+            conn.close()
 
     return None
 
 
 # ============================================================
-# PRUEBA DE CONEXIÓN MYSQL
+# PRUEBA MYSQL
 # ============================================================
 
 try:
 
-    conexion = get_mysql_connection()
+    conexion_mysql = get_mysql_connection()
 
-    print("CONEXIÓN CON MYSQL EXITOSA")
+    print(
+        "CONEXIÓN CON MYSQL EXITOSA"
+    )
 
-    conexion.close()
+    conexion_mysql.close()
 
 except Exception as e:
 
-    print("ERROR DE MYSQL:", e)
+    print(
+        "ERROR DE MYSQL:",
+        e
+    )
+
+
+# ============================================================
+# PRUEBA POSTGRESQL
+# ============================================================
+
+try:
+
+    conexion_postgres = get_postgres_connection()
+
+    print(
+        "CONEXIÓN CON POSTGRESQL EXITOSA"
+    )
+
+    conexion_postgres.close()
+
+except Exception as e:
+
+    print(
+        "ERROR DE POSTGRESQL:",
+        e
+    )
 
 
 # ============================================================
 # LISTAS TEMPORALES
 # ============================================================
-
-especies_registradas = []
 
 clientes_registrados = []
 
@@ -296,8 +383,7 @@ def acceso_restringido():
 
 
 # ============================================================
-# ESPECIES
-# PROTEGIDO CON LOGIN
+# ESPECIES - CREAR Y MOSTRAR
 # ============================================================
 
 @app.route(
@@ -309,32 +395,494 @@ def especies():
 
     form = EspecieForm()
 
+    conn = None
+    cursor = None
+
+    # ========================================================
+    # CREAR REGISTRO
+    # ========================================================
+
     if form.validate_on_submit():
 
-        especie = {
-            "nombre": form.nombre.data,
-            "nombre_cientifico": form.nombre_cientifico.data,
-            "familia": form.familia.data
-        }
+        try:
 
-        especies_registradas.append(
-            especie
+            conn = get_postgres_connection()
+
+            cursor = conn.cursor()
+
+            # ------------------------------------------------
+            # 1. INSERTAR ESPECIE
+            # ------------------------------------------------
+
+            cursor.execute(
+                """
+                INSERT INTO especies
+                (
+                    familia,
+                    genero,
+                    especie
+                )
+
+                VALUES (%s, %s, %s)
+
+                RETURNING id
+                """,
+                (
+                    form.familia.data,
+                    form.genero.data,
+                    form.especie.data
+                )
+            )
+
+            especie_id = cursor.fetchone()[0]
+
+            # ------------------------------------------------
+            # 2. INSERTAR MONITOREO
+            # ------------------------------------------------
+
+            cursor.execute(
+                """
+                INSERT INTO monitoreos
+                (
+                    especie_id,
+                    microhabitat,
+                    temporada,
+                    tipo_monitoreo
+                )
+
+                VALUES (%s, %s, %s, %s)
+
+                RETURNING id
+                """,
+                (
+                    especie_id,
+                    form.microhabitat.data,
+                    form.temporada.data,
+                    form.tipo_monitoreo.data
+                )
+            )
+
+            monitoreo_id = cursor.fetchone()[0]
+
+            # ------------------------------------------------
+            # 3. INSERTAR REGISTRO
+            # ------------------------------------------------
+
+            cursor.execute(
+                """
+                INSERT INTO registros
+                (
+                    monitoreo_id,
+                    cantidad,
+                    observaciones
+                )
+
+                VALUES (%s, %s, %s)
+                """,
+                (
+                    monitoreo_id,
+                    form.cantidad.data,
+                    form.observaciones.data
+                )
+            )
+
+            # ------------------------------------------------
+            # CONFIRMAR
+            # ------------------------------------------------
+
+            conn.commit()
+
+            return redirect(
+                url_for("especies")
+            )
+
+        except psycopg2.Error as e:
+
+            if conn:
+                conn.rollback()
+
+            print(
+                "ERROR AL REGISTRAR ESPECIE:",
+                e
+            )
+
+        finally:
+
+            if cursor:
+                cursor.close()
+
+            if conn:
+                conn.close()
+
+    # ========================================================
+    # CONSULTA CON JOIN
+    # ========================================================
+
+    conn = None
+    cursor = None
+
+    try:
+
+        conn = get_postgres_connection()
+
+        cursor = conn.cursor(
+            cursor_factory=RealDictCursor
         )
+
+        cursor.execute(
+            """
+            SELECT
+
+                e.id AS especie_id,
+
+                m.id AS monitoreo_id,
+
+                r.id AS registro_id,
+
+                e.familia,
+
+                e.genero,
+
+                e.especie,
+
+                m.microhabitat,
+
+                m.temporada,
+
+                m.tipo_monitoreo,
+
+                r.cantidad,
+
+                r.observaciones
+
+            FROM especies e
+
+            INNER JOIN monitoreos m
+                ON m.especie_id = e.id
+
+            INNER JOIN registros r
+                ON r.monitoreo_id = m.id
+
+            ORDER BY r.id DESC
+            """
+        )
+
+        especies_db = cursor.fetchall()
+
+    except psycopg2.Error as e:
+
+        print(
+            "ERROR AL CONSULTAR ESPECIES:",
+            e
+        )
+
+        especies_db = []
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if conn:
+            conn.close()
+
+    return render_template(
+        "especies.html",
+        form=form,
+        especies=especies_db
+    )
+
+
+# ============================================================
+# EDITAR ESPECIE
+# ============================================================
+
+@app.route(
+    "/especies/editar/<int:id>",
+    methods=["GET", "POST"]
+)
+@login_required
+def editar_especie(id):
+
+    form = EspecieForm()
+
+    conn = None
+    cursor = None
+
+    try:
+
+        conn = get_postgres_connection()
+
+        cursor = conn.cursor(
+            cursor_factory=RealDictCursor
+        )
+
+        # ----------------------------------------------------
+        # BUSCAR REGISTRO
+        # ----------------------------------------------------
+
+        cursor.execute(
+            """
+            SELECT
+
+                r.id AS registro_id,
+
+                e.id AS especie_id,
+
+                m.id AS monitoreo_id,
+
+                e.familia,
+
+                e.genero,
+
+                e.especie,
+
+                m.microhabitat,
+
+                m.temporada,
+
+                m.tipo_monitoreo,
+
+                r.cantidad,
+
+                r.observaciones
+
+            FROM registros r
+
+            INNER JOIN monitoreos m
+                ON r.monitoreo_id = m.id
+
+            INNER JOIN especies e
+                ON m.especie_id = e.id
+
+            WHERE r.id = %s
+            """,
+            (id,)
+        )
+
+        registro = cursor.fetchone()
+        
+        print("REGISTRO ENCONTRADO:", registro)
+
+        if not registro:
+
+            return "El registro no existe."
+
+        # ----------------------------------------------------
+        # ACTUALIZAR
+        # ----------------------------------------------------
+
+        if form.validate_on_submit():
+
+            # ACTUALIZAR ESPECIE
+
+            cursor.execute(
+                """
+                UPDATE especies
+
+                SET
+                    familia = %s,
+                    genero = %s,
+                    especie = %s
+
+                WHERE id = %s
+                """,
+                (
+                    form.familia.data,
+                    form.genero.data,
+                    form.especie.data,
+                    registro["especie_id"]
+                )
+            )
+
+            # ACTUALIZAR MONITOREO
+
+            cursor.execute(
+                """
+                UPDATE monitoreos
+
+                SET
+                    microhabitat = %s,
+                    temporada = %s,
+                    tipo_monitoreo = %s
+
+                WHERE id = %s
+                """,
+                (
+                    form.microhabitat.data,
+                    form.temporada.data,
+                    form.tipo_monitoreo.data,
+                    registro["monitoreo_id"]
+                )
+            )
+
+            # ACTUALIZAR REGISTRO
+
+            cursor.execute(
+                """
+                UPDATE registros
+
+                SET
+                    cantidad = %s,
+                    observaciones = %s
+
+                WHERE id = %s
+                """,
+                (
+                    form.cantidad.data,
+                    form.observaciones.data,
+                    registro["registro_id"]
+                )
+            )
+
+            conn.commit()
+
+            return redirect(
+                url_for("especies")
+            )
+
+        # ----------------------------------------------------
+        # CARGAR DATOS
+        # ----------------------------------------------------
+
+        if request.method == "GET":
+
+            form.familia.data = registro["familia"]
+
+            form.genero.data = registro["genero"]
+
+            form.especie.data = registro["especie"]
+
+            form.microhabitat.data = registro["microhabitat"]
+
+            form.temporada.data = registro["temporada"]
+
+            form.tipo_monitoreo.data = registro["tipo_monitoreo"]
+
+            form.cantidad.data = registro["cantidad"]
+
+            form.observaciones.data = registro["observaciones"]
+
+        return render_template(
+            "editar_especie.html",
+            form=form,
+            registro_id=id
+        )
+
+    except psycopg2.Error as e:
+
+        if conn:
+            conn.rollback()
+
+        print(
+            "ERROR AL EDITAR ESPECIE:",
+            e
+        )
+
+        return "Ocurrió un error al editar el registro."
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if conn:
+            conn.close()
+
+
+# ============================================================
+# ELIMINAR ESPECIE
+# ============================================================
+
+@app.route(
+    "/especies/eliminar/<int:id>",
+    methods=["POST"]
+)
+@login_required
+def eliminar_especie(id):
+
+    conn = None
+    cursor = None
+
+    try:
+
+        conn = get_postgres_connection()
+
+        cursor = conn.cursor()
+
+        # ----------------------------------------------------
+        # BUSCAR ESPECIE
+        # ----------------------------------------------------
+
+        cursor.execute(
+            """
+            SELECT
+                e.id
+
+            FROM registros r
+
+            INNER JOIN monitoreos m
+                ON r.monitoreo_id = m.id
+
+            INNER JOIN especies e
+                ON m.especie_id = e.id
+
+            WHERE r.id = %s
+            """,
+            (id,)
+        )
+
+        resultado = cursor.fetchone()
+
+        if not resultado:
+
+            return "El registro no existe."
+
+        especie_id = resultado[0]
+
+        # ----------------------------------------------------
+        # ELIMINAR ESPECIE
+        # ----------------------------------------------------
+        # ON DELETE CASCADE elimina los registros relacionados.
+
+        cursor.execute(
+            """
+            DELETE FROM especies
+
+            WHERE id = %s
+            """,
+            (especie_id,)
+        )
+
+        conn.commit()
 
         return redirect(
             url_for("especies")
         )
 
-    return render_template(
-        "especies.html",
-        form=form,
-        especies=especies_registradas
-    )
+    except psycopg2.Error as e:
+
+        if conn:
+            conn.rollback()
+
+        print(
+            "ERROR AL ELIMINAR ESPECIE:",
+            e
+        )
+
+        return "Ocurrió un error al eliminar el registro."
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if conn:
+            conn.close()
 
 
 # ============================================================
 # PRODUCTOS
-# PROTEGIDO CON LOGIN
 # ============================================================
 
 @app.route(
@@ -359,6 +907,7 @@ def productos():
                 precio,
                 cantidad
             )
+
             VALUES (?, ?, ?, ?)
             """,
             (
@@ -387,7 +936,9 @@ def productos():
             categoria,
             precio,
             cantidad
+
         FROM productos
+
         ORDER BY id DESC
         """
     ).fetchall()
@@ -403,7 +954,6 @@ def productos():
 
 # ============================================================
 # CLIENTES
-# PROTEGIDO CON LOGIN
 # ============================================================
 
 @app.route(
@@ -423,9 +973,7 @@ def clientes():
             "telefono": form.telefono.data
         }
 
-        clientes_registrados.append(
-            cliente
-        )
+        clientes_registrados.append(cliente)
 
         return redirect(
             url_for("clientes")
@@ -440,7 +988,6 @@ def clientes():
 
 # ============================================================
 # PROVEEDORES
-# PROTEGIDO CON LOGIN
 # ============================================================
 
 @app.route(
@@ -460,9 +1007,7 @@ def proveedores():
             "telefono": form.telefono.data
         }
 
-        proveedores_registrados.append(
-            proveedor
-        )
+        proveedores_registrados.append(proveedor)
 
         return redirect(
             url_for("proveedores")
@@ -477,7 +1022,6 @@ def proveedores():
 
 # ============================================================
 # FACTURACIÓN
-# PROTEGIDO CON LOGIN
 # ============================================================
 
 @app.route(
@@ -497,9 +1041,7 @@ def facturacion():
             "cantidad": form.cantidad.data
         }
 
-        facturas_registradas.append(
-            factura
-        )
+        facturas_registradas.append(factura)
 
         return redirect(
             url_for("facturacion")
@@ -513,7 +1055,7 @@ def facturacion():
 
 
 # ============================================================
-# REGISTRO DE USUARIOS
+# REGISTRO DE USUARIOS - POSTGRESQL
 # ============================================================
 
 @app.route(
@@ -534,9 +1076,12 @@ def registro():
             password
         )
 
+        conn = None
+        cursor = None
+
         try:
 
-            conn = get_mysql_connection()
+            conn = get_postgres_connection()
 
             cursor = conn.cursor()
 
@@ -547,6 +1092,7 @@ def registro():
                     usuario,
                     password
                 )
+
                 VALUES (%s, %s)
                 """,
                 (
@@ -557,22 +1103,36 @@ def registro():
 
             conn.commit()
 
-            cursor.close()
-
-            conn.close()
-
             return redirect(
                 url_for("login")
             )
 
-        except mysql.connector.Error as e:
+        except psycopg2.IntegrityError:
+
+            if conn:
+                conn.rollback()
+
+            return "El usuario ya existe."
+
+        except psycopg2.Error as e:
+
+            if conn:
+                conn.rollback()
 
             print(
                 "ERROR AL REGISTRAR:",
                 e
             )
 
-            return "El usuario ya existe o ocurrió un error."
+            return "Ocurrió un error al registrar el usuario."
+
+        finally:
+
+            if cursor:
+                cursor.close()
+
+            if conn:
+                conn.close()
 
     return render_template(
         "registro.html",
@@ -581,7 +1141,7 @@ def registro():
 
 
 # ============================================================
-# LOGIN
+# LOGIN - POSTGRESQL
 # ============================================================
 
 @app.route(
@@ -606,43 +1166,66 @@ def login():
             "password"
         )
 
-        conn = get_mysql_connection()
+        conn = None
+        cursor = None
 
-        cursor = conn.cursor(
-            dictionary=True
-        )
+        usuario_db = None
 
-        cursor.execute(
-            """
-            SELECT
-                id,
-                usuario,
-                password
-            FROM usuarios
-            WHERE usuario = %s
-            """,
-            (usuario,)
-        )
+        try:
 
-        usuario_db = cursor.fetchone()
+            conn = get_postgres_connection()
 
-        cursor.close()
+            cursor = conn.cursor()
 
-        conn.close()
+            cursor.execute(
+                """
+                SELECT
+                    id,
+                    usuario,
+                    password
+
+                FROM usuarios
+
+                WHERE usuario = %s
+                """,
+                (usuario,)
+            )
+
+            usuario_db = cursor.fetchone()
+
+        except psycopg2.Error as e:
+
+            print(
+                "ERROR DE LOGIN:",
+                e
+            )
+
+            return render_template(
+                "login.html",
+                error="No se pudo conectar con la base de datos."
+            )
+
+        finally:
+
+            if cursor:
+                cursor.close()
+
+            if conn:
+                conn.close()
 
         if usuario_db:
 
             password_correcta = check_password_hash(
-                usuario_db["password"],
+                usuario_db[2],
                 password
             )
 
             if password_correcta:
 
                 usuario_obj = Usuario(
-                    usuario_db["id"],
-                    usuario_db["usuario"],
-                    usuario_db["password"]
+                    usuario_db[0],
+                    usuario_db[1],
+                    usuario_db[2]
                 )
 
                 login_user(

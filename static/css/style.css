@@ -1,100 +1,620 @@
-body {
-    background-color: #f4f7f6;
-    font-family: "Times New Roman", serif;
-    color: #333333;
+/* =========================================================
+   SISTEMA DE MONITOREO DE BIODIVERSIDAD
+   Diseño general
+   ========================================================= */
+
+:root {
+    --verde-oscuro: #12372a;
+    --verde: #1f6f50;
+    --verde-claro: #3fa36c;
+    --verde-suave: #eaf5ee;
+    --crema: #f7f9f6;
+    --texto: #26332d;
+    --gris: #6c757d;
+    --blanco: #ffffff;
+    --rojo: #c0392b;
 }
 
-.hero {
-    background: linear-gradient(120deg, #1b5e20, #43a047);
-    color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+/* =========================================================
+   CUERPO
+   ========================================================= */
+
+body {
+    margin: 0;
+    background: var(--crema);
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--texto);
 }
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar-biodiversidad {
+    background: linear-gradient(
+        135deg,
+        var(--verde-oscuro),
+        var(--verde)
+    );
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+    min-height: 72px;
+}
+
+
+.navbar-brand {
+    color: white !important;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+}
+
+
+.navbar-brand small {
+    display: block;
+    font-size: 11px;
+    opacity: 0.8;
+    font-weight: normal;
+}
+
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    font-size: 22px;
+}
+
+
+.navbar .nav-link {
+    color: rgba(255, 255, 255, 0.88) !important;
+
+    padding: 10px 12px !important;
+
+    border-radius: 8px;
+
+    margin: 0 2px;
+
+    transition: all 0.25s ease;
+}
+
+
+.navbar .nav-link:hover {
+    color: white !important;
+
+    background: rgba(255, 255, 255, 0.13);
+
+    transform: translateY(-1px);
+}
+
+
+.navbar .nav-link i {
+    margin-right: 5px;
+}
+
+
+/* =========================================================
+   USUARIO
+   ========================================================= */
+
+.usuario-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.usuario-nombre {
+    color: white;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    padding: 8px 13px;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+}
+
+
+.usuario-nombre i {
+    margin-right: 5px;
+}
+
+
+.btn-login,
+.btn-registro,
+.btn-cerrar {
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 9px 14px;
+
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+
+.btn-login {
+    background: white;
+    color: var(--verde-oscuro);
+}
+
+
+.btn-login:hover {
+    background: #edf7f0;
+    color: var(--verde-oscuro);
+    transform: translateY(-2px);
+}
+
+
+.btn-registro {
+    background: var(--verde-claro);
+    color: white;
+}
+
+
+.btn-registro:hover {
+    background: #328a5b;
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+.btn-cerrar {
+    background: #c0392b;
+    color: white;
+}
+
+
+.btn-cerrar:hover {
+    background: #a93226;
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    background: linear-gradient(
+        135deg,
+        var(--verde-oscuro),
+        var(--verde-claro)
+    );
+
+    color: white;
+
+    border-radius: 0 0 25px 25px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
+}
+
+
+.hero h1,
+.hero h2,
+.hero h3 {
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TARJETAS
+   ========================================================= */
 
 .card {
     border: none;
-    border-radius: 12px;
+
+    border-radius: 16px;
+
+    background: white;
+
+    box-shadow: 0 5px 18px rgba(25, 60, 45, 0.08);
+
+    overflow: hidden;
+
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
 }
+
 
 .card:hover {
-    transform: scale(1.03);
-    transition: 0.3s;
+    transform: translateY(-4px);
+
+    box-shadow: 0 10px 28px rgba(25, 60, 45, 0.13);
 }
 
-img {
-    max-height: 350px;
-    object-fit: cover;
-}
-
-#mensajeGeneral {
-    margin-bottom: 15px;
-}
-
-aside {
-    border-left: 6px solid #198754;
-}
-
-footer {
-    background-color: #1b5e20;
-    color: white;
-}
-
-@media (max-width: 768px) {
-    .hero {
-        padding: 30px 10px !important;
-    }
-
-    .hero h2 {
-        font-size: 26px;
-    }
-
-    img {
-        max-height: 250px;
-    }
-
-    .navbar-brand {
-        font-size: 18px;
-    }
-}
-#spinnerRegistro {
-    margin-left: 8px;
-}
 
 .card-title {
-    font-weight: bold;
+    font-weight: 700;
+
+    color: var(--verde-oscuro);
 }
+
 
 .card-body {
     min-height: 230px;
 }
 
-.modal-content {
-    border: none;
-    border-radius: 14px;
-    overflow: hidden;
+
+.card-header {
+    background: var(--verde-suave);
+
+    color: var(--verde-oscuro);
+
+    border-bottom: 1px solid #d9e9df;
+
+    font-weight: 600;
 }
 
+
+/* =========================================================
+   TABLAS
+   ========================================================= */
+
+.table {
+    background: white;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    vertical-align: middle;
+}
+
+
+.table thead {
+    background: var(--verde-oscuro);
+
+    color: white;
+}
+
+
+.table thead th {
+    border: none;
+
+    padding: 13px 12px;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+}
+
+
+.table tbody td {
+    padding: 12px;
+
+    border-color: #e8eee9;
+}
+
+
+.table tbody tr {
+    transition: background 0.2s ease;
+}
+
+
+.table tbody tr:hover {
+    background: var(--verde-suave);
+}
+
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.btn {
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+
+.btn-success {
+    background: var(--verde);
+
+    border-color: var(--verde);
+}
+
+
+.btn-success:hover {
+    background: var(--verde-oscuro);
+
+    border-color: var(--verde-oscuro);
+}
+
+
+.btn-primary {
+    background: #3578a8;
+
+    border-color: #3578a8;
+}
+
+
+.btn-danger {
+    background: var(--rojo);
+
+    border-color: var(--rojo);
+}
+
+
+/* =========================================================
+   FORMULARIOS
+   ========================================================= */
+
+.form-control,
+.form-select {
+    border: 1px solid #d7e2dc;
+
+    border-radius: 9px;
+
+    padding: 10px 12px;
+
+    background-color: #fcfdfc;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--verde-claro);
+
+    box-shadow: 0 0 0 0.2rem rgba(63, 163, 108, 0.15);
+
+    background-color: white;
+}
+
+
+.form-label {
+    font-weight: 600;
+
+    color: var(--verde-oscuro);
+
+    margin-bottom: 6px;
+}
+
+
+/* =========================================================
+   ALERTAS
+   ========================================================= */
+
+.alert {
+    border: none;
+
+    border-radius: 10px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================================
+   ASIDE
+   ========================================================= */
+
+aside {
+    border-left: 5px solid var(--verde);
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 15px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================================================
+   IMÁGENES
+   ========================================================= */
+
+img {
+    max-height: 350px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+}
+
+
+/* =========================================================
+   MODALES
+   ========================================================= */
+
+.modal-content {
+    border: none;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+}
+
+
 .modal-header {
+    background: var(--verde-oscuro);
+
+    color: white;
+
     border-bottom: none;
 }
+
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}
+
 
 .modal-footer {
     border-top: 1px solid #dee2e6;
 }
 
+
 #modalDescripcion {
     text-align: justify;
 }
 
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer-biodiversidad {
+    margin-top: 60px;
+
+    padding: 35px 20px;
+
+    background: var(--verde-oscuro);
+
+    color: white;
+}
+
+
+.footer-icon {
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+
+.footer-biodiversidad h6 {
+    margin-bottom: 5px;
+
+    font-weight: 700;
+}
+
+
+.footer-biodiversidad p {
+    margin-bottom: 8px;
+
+    opacity: 0.75;
+}
+
+
+.footer-biodiversidad small {
+    opacity: 0.55;
+}
+
+
+/* =========================================================
+   MENSAJES
+   ========================================================= */
+
+#mensajeGeneral {
+    margin-bottom: 15px;
+}
+
+
+#spinnerRegistro {
+    margin-left: 8px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 992px) {
+
+    .usuario-menu {
+        margin-top: 12px;
+
+        padding-bottom: 10px;
+
+        flex-wrap: wrap;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .hero {
+        padding: 30px 15px !important;
+
+        border-radius: 0 0 18px 18px;
+    }
+
+
+    .hero h2 {
+        font-size: 26px;
+    }
+
+
+    img {
+        max-height: 250px;
+    }
+
+
+    .navbar-brand {
+        font-size: 16px;
+    }
+
+
+    .table {
+        font-size: 13px;
+    }
+
+}
+
+
 @media (max-width: 576px) {
+
     #btnAgregar {
         width: 100%;
     }
+
 
     .card-body {
         min-height: auto;
     }
 
+
     .card .btn {
         width: 100%;
     }
+
+
+    .usuario-menu {
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .usuario-nombre {
+        text-align: center;
+    }
+
+
+    .btn-login,
+    .btn-registro,
+    .btn-cerrar {
+        width: 100%;
+    }
+
 }

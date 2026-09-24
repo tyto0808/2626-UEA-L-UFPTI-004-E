@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+            <h2 class="mb-0">Editar registro de especie</h2>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                {{ form.hidden_tag() }}
+
+                <div class="mb-3">
+                    <label class="form-label">Familia</label>
+                    <input
+                        type="text"
+                        name="familia"
+                        class="form-control"
+                        value="{{ form.familia.data or '' }}"
+                    >
+
+                    {% for error in form.familia.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">Género</label>
+                    <input
+                        type="text"
+                        name="genero"
+                        class="form-control"
+                        value="{{ form.genero.data or '' }}"
+                    >
+
+                    {% for error in form.genero.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">Especie</label>
+                    <input
+                        type="text"
+                        name="especie"
+                        class="form-control"
+                        value="{{ form.especie.data or '' }}"
+                    >
+
+                    {% for error in form.especie.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">Microhábitat</label>
+
+                    <select
+                        name="microhabitat"
+                        class="form-select"
+                    >
+
+                        <option value="">Seleccione un microhábitat</option>
+
+                        <option value="Arbustos"
+                            {% if form.microhabitat.data == "Arbustos" %}selected{% endif %}>
+                            Arbustos
+                        </option>
+
+                        <option value="Hojarasca"
+                            {% if form.microhabitat.data == "Hojarasca" %}selected{% endif %}>
+                            Hojarasca
+                        </option>
+
+                        <option value="Suelo"
+                            {% if form.microhabitat.data == "Suelo" %}selected{% endif %}>
+                            Suelo
+                        </option>
+
+                        <option value="Troncos"
+                            {% if form.microhabitat.data == "Troncos" %}selected{% endif %}>
+                            Troncos
+                        </option>
+
+                    </select>
+
+                    {% for error in form.microhabitat.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">Temporada</label>
+
+                    <select
+                        name="temporada"
+                        class="form-select"
+                    >
+
+                        <option value="">Seleccione una temporada</option>
+
+                        <option value="Invierno"
+                            {% if form.temporada.data == "Invierno" %}selected{% endif %}>
+                            Invierno
+                        </option>
+
+                        <option value="Verano"
+                            {% if form.temporada.data == "Verano" %}selected{% endif %}>
+                            Verano
+                        </option>
+
+                    </select>
+
+                    {% for error in form.temporada.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">Tipo de monitoreo</label>
+
+                    <select
+                        name="tipo_monitoreo"
+                        class="form-select"
+                    >
+
+                        <option value="">Seleccione el tipo de monitoreo</option>
+
+                        <option value="Diurno"
+                            {% if form.tipo_monitoreo.data == "Diurno" %}selected{% endif %}>
+                            Diurno
+                        </option>
+
+                        <option value="Nocturno"
+                            {% if form.tipo_monitoreo.data == "Nocturno" %}selected{% endif %}>
+                            Nocturno
+                        </option>
+
+                    </select>
+
+                    {% for error in form.tipo_monitoreo.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">Número de individuos</label>
+
+                    <input
+                        type="number"
+                        name="cantidad"
+                        class="form-control"
+                        value="{{ form.cantidad.data or '' }}"
+                    >
+
+                    {% for error in form.cantidad.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">Observaciones</label>
+
+                    <textarea
+                        name="observaciones"
+                        class="form-control"
+                        rows="4"
+                    >{{ form.observaciones.data or '' }}</textarea>
+
+                    {% for error in form.observaciones.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="mt-4">
+
+                    <button
+                        type="submit"
+                        name="submit"
+                        class="btn btn-success"
+                    >
+                        Guardar cambios
+                    </button>
+
+                    <a
+                        href="{{ url_for('especies') }}"
+                        class="btn btn-secondary"
+                    >
+                        Cancelar
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acceso restringido</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f8f4;
+        }
+
+        .contenedor {
+            min-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tarjeta {
+            background: white;
+            width: 450px;
+            padding: 40px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .icono {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #198754;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #555;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .botones {
+            margin-top: 30px;
+        }
+
+        .boton {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login {
+            background: #198754;
+            color: white;
+        }
+
+        .registro {
+            background: #e9ecef;
+            color: #198754;
+        }
+
+        .boton:hover {
+            opacity: 0.85;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <div class="tarjeta">
+
+            <div class="icono">
+                🔒
+            </div>
+
+            <h1>
+                Acceso restringido
+            </h1>
+
+            <p>
+                Esta sección es exclusiva para usuarios registrados.
+            </p>
+
+            <p>
+                Inicia sesión para acceder a las funciones del
+                sistema de monitoreo de biodiversidad.
+            </p>
+
+            <div class="botones">
+
+                <a
+                    href="{{ url_for('login') }}"
+                    class="boton login"
+                >
+                    🔐 Iniciar sesión
+                </a>
+
+                <a
+                    href="{{ url_for('registro') }}"
+                    class="boton registro"
+                >
+                    ✍️ Crear cuenta
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
